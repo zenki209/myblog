@@ -12,7 +12,7 @@ JKELYY is one of the simple framework with support by github. In order to start 
 
 * Edit the ```_config.yaml``` to your desire configuration.
 
-* Create the ```.md``` file in the _post.
+* Create the ```.md``` file in the _post. The post name should start as ```yyyy-mm-dd-your-blog-post-name.md```.
 
 
 Happy blogging !!!!!
