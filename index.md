@@ -1,5 +1,3 @@
-Here you can say lots of fun things about your site.
+Your Limitation is your imagination
 
-Maybe say a some things about yourself.
-
-Or maybe what you plan to blog about.
+This is a place I share my knowledge and tell about myself
