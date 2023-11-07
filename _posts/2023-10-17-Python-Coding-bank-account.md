@@ -34,11 +34,9 @@ D contains strings in YYYY−MM−DD format, representing dates in the range 202
 In your solution, focus on correctness. The performance of your solution will not be the focus of the assessment.
 ```
 
-##Solutions:
+## Solutions:
 
 ```Python
-# you can write to stdout for debugging purposes, e.g.
-# print("this is a debug message")
 from collections import defaultdict
 from datetime import datetime
 
