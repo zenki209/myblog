@@ -1,5 +1,15 @@
-title: "KOALA THOUGHT..."
-description: "Hello, Koala is here .... This will show up in places like Twitter or LinkedIn when you share your site URL."
+title: "My Blog"
+description: "A personal blog powered by Jekyll and GitHub Pages"
+remote_theme: pages-themes/hacker@v0.2.0
+
+# Optional: Author name
+author: Admin
+
+# Optional: Include asset folders
+include:
+  - css
+  - js
+  - _images
 
 email: "khoa.trinh@hotmail.com"
 
