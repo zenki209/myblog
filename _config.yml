@@ -1,37 +1,5 @@
-title: "My Blog"
-description: "A personal blog powered by Jekyll and GitHub Pages"
-remote_theme: pages-themes/hacker@v0.2.0
-
-# Optional: Author name
-author: Admin
-
-# Optional: Include asset folders
-include:
-  - css
-  - js
-  - _images
-
-email: "khoa.trinh@hotmail.com"
-
-# Use the Hacker theme via remote_theme
-remote_theme: pages-themes/hacker@v0.2.0
-
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-remote-theme
-
-kramdown:
-  syntax_highlighter_opts:
-    disable: true
-
-titles_from_headings:
-  strip_title: true
-  collections: true
-
-defaults:
-  - scope:
-      path: ""
-      type: posts   # <-- plural
-    values:
-      tags: Other
+title: Hacker theme
+description: Hacker is a theme for GitHub Pages.
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-hacker
