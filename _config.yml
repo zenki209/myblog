@@ -1,24 +1,22 @@
 title: "My Terminal"
 description: "The Koala terminal where I share my learning journey...."
-url: ["https://zenki209.github.io/myblog/"]
+url: "https://zenki209.github.io"
+baseurl: "/myblog"
+
 remote_theme: pages-themes/hacker@v0.2.0
 
-# Only these plugins are supported by GitHub Pages
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-# Exclude folders/files from build
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
 
-# Permalink settings
 permalink: /:year/:month/:day/:title/
 
-# Defaults for posts
 defaults:
   -
     scope:
@@ -28,7 +26,6 @@ defaults:
       layout: "post"
       author: "Admin"
 
-# Include asset folders
 include:
   - css
   - js
