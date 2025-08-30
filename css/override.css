@@ -1,3 +1,8 @@
+#a-title {
+  display: block;
+  text-align: center;
+}
+
 hr {
   margin-top: 30px;
   margin-bottom: 20px;
