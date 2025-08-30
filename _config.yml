@@ -1,5 +1,5 @@
-title: "My Blog"
-description: "A personal blog powered by Jekyll and GitHub Pages"
+title: "My Terminal"
+description: "The Koala terminal where I share my learning journey...."
 remote_theme: pages-themes/hacker@v0.2.0
 
 # Only these plugins are supported by GitHub Pages
