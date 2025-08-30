@@ -1,3 +1,8 @@
+---
+layout: post
+title: "Can you be a detective?"
+date: 2025-08-30
+---
 Pigeonhole Principle
 
 While researching how to determine if a number is "happy," I discovered some interesting mathematical insights.
