@@ -1,5 +1,7 @@
 /* Hide ::before for the site title inside #a-title */
-#a-title h1::before {
+#a-title h1::before,
+.site-title::before,
+h1::before {
   content: none !important;
   display: none !important;
 }
