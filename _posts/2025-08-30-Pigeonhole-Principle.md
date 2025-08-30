@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Can you be a detective?"
+title: "Pigeonhole Principle"
 date: 2025-08-30
 ---
 Pigeonhole Principle
