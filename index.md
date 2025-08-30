@@ -1,1 +1,4 @@
-Learning is sharing this is a place I share about everything in my life
+---
+layout: home
+title: "My Terminal"
+---
