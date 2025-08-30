@@ -1,5 +1,6 @@
 title: "My Terminal"
 description: "The Koala terminal where I share my learning journey...."
+url: ["https://zenki209.github.io/myblog/"]
 remote_theme: pages-themes/hacker@v0.2.0
 
 # Only these plugins are supported by GitHub Pages
