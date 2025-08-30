@@ -13,6 +13,9 @@ Hope you get some fun here! 😄
     <li>
       <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
       <span>📅 ({{ post.date | date: "%Y-%m-%d" }})</span>
+      <div>
+        {{ post.excerpt | strip_html | truncate: 160 }}
+      </div>
     </li>
   {% endfor %}
 </ul>
