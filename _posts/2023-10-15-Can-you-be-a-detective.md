@@ -1,4 +1,4 @@
-# Solution to SQL Murdery Mystery
+# Solution to SQL Contest: Murder Mystery
 
 A walkthrough of the solution to [SQL Murder Mystery](https://github.com/NUKnightLab/sql-mysteries) by [Northwestern University Knight Lab](https://knightlab.northwestern.edu/). Solution by [Mikhail Popov](https://mpopov.com/)
 
