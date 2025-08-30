@@ -3,7 +3,16 @@ title: "Home"
 layout: default
 ---
 
-Welcome to my blog!  
-Here you'll find posts, code, and more.
+👋 Welcome to my blog!  
+Hope you get some fun here! 😄
 
-[Archive](archive.md)
+## 📝 Latest Posts
+
+<ul>
+  {% for post in site.posts limit:5 %}
+    <li>
+      <a href="{{ post.url }}">📰 {{ post.title }}</a>
+      <span>📅 ({{ post.date | date: "%Y-%m-%d" }})</span>
+    </li>
+  {% endfor %}
+</ul>
