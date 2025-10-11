@@ -38,5 +38,9 @@ Ashi-sabaki refers to foot movement patterns used in Kendo.
 ---
 
 ### References & Resources
-- Video reference: https://www.youtube.com/watch?v=bSwS4-J0qCA (Ni-kyu-do and San-kyu-do Suburi)
+- Video reference:
+  https://www.youtube.com/watch?v=bSwS4-J0qCA (Ni-kyu-do and San-kyu-do Suburi)
+  https://www.youtube.com/watch?v=p093qIzxQhQ (Kirikaeshi)
+  https://www.youtube.com/watch?v=qC1bCBzvSBU (Okuri-Ashi)
+  https://www.youtube.com/watch?v=D2wx4i8a6OQ (Fumikomi-Ashi)
 
