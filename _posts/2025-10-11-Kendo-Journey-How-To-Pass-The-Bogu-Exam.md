@@ -24,7 +24,6 @@ Suburi are basic solo cutting/swinging practices to develop form and rhythm.
 - **Zenshin Kotai Sayumen**  
   Kỹ thuật chém tiến lùi sang hai bên (forward/back with lateral motion).
 
-Reference: https://www.youtube.com/watch?v=bSwS4-J0qCA
 
 ### Ashi-sabaki — Footwork
 Ashi-sabaki refers to foot movement patterns used in Kendo.
@@ -38,9 +37,13 @@ Ashi-sabaki refers to foot movement patterns used in Kendo.
 ---
 
 ### References & Resources
-- Video reference:
-  https://www.youtube.com/watch?v=bSwS4-J0qCA (Ni-kyu-do and San-kyu-do Suburi)
-  https://www.youtube.com/watch?v=p093qIzxQhQ (Kirikaeshi)
-  https://www.youtube.com/watch?v=qC1bCBzvSBU (Okuri-Ashi)
-  https://www.youtube.com/watch?v=D2wx4i8a6OQ (Fumikomi-Ashi)
 
+- Video references
+  - Ni-kyu-do and San-kyu-do Suburi — YouTube: [https://www.youtube.com/watch?v=bSwS4-J0qCA](https://www.youtube.com/watch?v=bSwS4-J0qCA)
+  - Kirikaeshi — YouTube: [https://www.youtube.com/watch?v=p093qIzxQhQ](https://www.youtube.com/watch?v=p093qIzxQhQ)
+  - Okuri-ashi — YouTube: [https://www.youtube.com/watch?v=qC1bCBzvSBU](https://www.youtube.com/watch?v=qC1bCBzvSBU)
+  - Fumikomi-ashi — YouTube: [https://www.youtube.com/watch?v=D2wx4i8a6OQ](https://www.youtube.com/watch?v=D2wx4i8a6OQ)
+
+- Notes
+  - Videos demonstrate basic drills and footwork; practice under a qualified instructor where possible.
+  - Timestamps or chapter markers (if available) can help locate specific techniques quickly.
