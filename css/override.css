@@ -1,11 +1,9 @@
 /* Strongest possible override for Hacker theme site title */
-header h1::before,
-.site-title::before,
-#a-title h1::before,
-h1::before {
-  content: none !important;
-  display: none !important;
-  color: transparent !important;
+#a-title>h1::before {
+  content: "koala@home:~$ ";
+  display: inline-block;
+  margin-right: .25rem;
+  color: currentColor;
 }
 
 hr {
