@@ -1,6 +1,0 @@
-/* Strongest possible override for Hacker theme site title */
-#a-title>h1::before {
-  display: inline-block;
-  margin-right: .25rem;
-  color: currentColor;
-}
