@@ -1,9 +1,0 @@
---- ---
-/* Import the theme's CSS bundle */
-@import "{{ site.theme }}";
-
-/* Your overrides AFTER the import */
-#a-title>h1::before {
-    content: none !important;
-    display: none !important;
-}
