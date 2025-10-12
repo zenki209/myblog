@@ -1,0 +1,11 @@
+--- ---
+/* Import the Hacker theme bundle */
+@import "{{ site.theme }}";
+
+/* Your overrides AFTER the import so they win */
+#a-title>h1::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* more custom CSS... */
