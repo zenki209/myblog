@@ -1,11 +1,9 @@
 --- ---
-/* 1) Load the theme CSS first */
+/* Import the theme's CSS bundle */
 @import "{{ site.theme }}";
 
-/* 2) Your overrides BELOW so they win */
+/* Your overrides AFTER the import */
 #a-title>h1::before {
     content: none !important;
     display: none !important;
 }
-
-/* add more overrides here */
