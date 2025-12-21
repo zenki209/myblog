@@ -1,3 +1,11 @@
+---
+layout: post
+title: "What is SUDO?"
+date: 2025-12-21
+tags: [linux, security, sudo]
+---
+
+
 # What is SUDO?
 
 The sudo command allows users to perform tasks with higher privileges while logging their actions for security.
