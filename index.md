@@ -6,6 +6,10 @@ layout: default
 👋 Welcome to my blog!  
 Hope you get some fun here! 😄
 
+* Table of Contents
+{:toc}
+
+
 ## 📝 Latest Posts
 
 <ul>
