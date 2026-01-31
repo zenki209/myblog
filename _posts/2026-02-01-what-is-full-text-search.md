@@ -57,5 +57,5 @@ Reason: full-text search applies techniques such as stemming or lemmatization to
 - Language and tokenizer choice affect accuracy.  
 - Stop-word lists and stemming rules can alter results — tune for your use case.  
 - Some systems support synonyms, language detection, and highlight snippets.
-what is full-text-search ?
+- Performance can vary based on index size and query complexity.
 
