@@ -7,6 +7,21 @@ layout: default
 Hope you get some fun here! 😄
 
 
+## 📝 Latest Posts
+
+<ul>
+  {% for post in site.posts limit:3 %}
+    <li>
+      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+      <span>📅 ({{ post.date | date: "%Y-%m-%d" }})</span>
+      <div>
+        {{ post.excerpt | strip_html | truncate: 160 }}
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+
+
 ## 📄 Blog Posts
 
 <ul>
@@ -19,16 +34,3 @@ Hope you get some fun here! 😄
 </ul>
 
 
-## 📝 Latest Posts
-
-<ul>
-  {% for post in site.posts limit:5 %}
-    <li>
-      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-      <span>📅 ({{ post.date | date: "%Y-%m-%d" }})</span>
-      <div>
-        {{ post.excerpt | strip_html | truncate: 160 }}
-      </div>
-    </li>
-  {% endfor %}
-</ul>
