@@ -33,3 +33,6 @@ Below is a step-by-step guide to disk analysis:
   - Archive old data
 
 Disk analysis is an essential part of system maintenance and can help prevent issues related to disk space exhaustion. Regularly performing disk analysis ensures that your system remains healthy, efficient, and responsive.
+
+
+Reference: [Find Top Large Directories and Files Sizes in Linux](https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/)

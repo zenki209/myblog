@@ -33,6 +33,13 @@ I created the project repository with the structure shown below:
 
 All of these will be under Git version control. My target for the next couple of days is to track my goals every day by creating tasks every morning, and I will see how much progress I can make.
 
+## Backup and Restore
+
+Since the project is under Git version control, and Obsidian can easily be backed up and restored:
+
+- **Obsidian Vault**: Backed up to OneDrive
+- **Repository**: Backed up to GitHub
+
 ## Why This Stack?
 
 Obsidian serves as an excellent knowledge base because of its note-linking capabilities and extensibility. Claude provides the intelligence, while VSCode and Terminal allow for seamless development and interaction.
@@ -41,9 +48,3 @@ In future posts, I'll dive deeper into the implementation details, challenges fa
 
 Stay tuned for updates!
 
-## Backup and Restore
-
-Since the project is under Git version control, and Obsidian can easily be backed up and restored:
-
-- **Obsidian Vault**: Backed up to OneDrive
-- **Repository**: Backed up to GitHub
