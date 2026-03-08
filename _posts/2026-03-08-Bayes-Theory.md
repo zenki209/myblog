@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Bayes' Theorem — Quick Cheat Sheet
-date: 2023-03-08
+title: "Bayes' Theorem — Quick Cheat Sheet"
+date: 2026-03-08
 categories: [AI, Bayes, Probability]
 ---
 
