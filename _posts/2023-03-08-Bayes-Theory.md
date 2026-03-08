@@ -1,230 +1,174 @@
 ---
 layout: post
-title: "Bayes' Theorem --- Quick Cheat Sheet"
-date: 2026-03-08
-tags: [programming, search, data engineer, bayes, probability]
+title: Bayes' Theorem — Quick Cheat Sheet
+date: 2023-03-08
+tags:
+  - bayes
+  - probability
+  - statistics
+  - data-science
 ---
-# Bayes' Theorem --- Quick Cheat Sheet
+
+# Bayes' Theorem — Quick Cheat Sheet
 
 ## Core Idea
 
-Bayes helps answer:
+Bayes answers the question:
 
-> If we observe **evidence B**, what is the probability that **cause A**
-> is true?
+> If we observe **evidence B**, what is the probability that **cause A** is true?
 
 Notation:
 
-P(A\|B) = Probability of A **given** B.
-
-------------------------------------------------------------------------
-
-# Bayes Formula
-
-P(A\|B) = ( P(B\|A) \* P(A) ) / P(B)
-
-  Term   Meaning
-  ------ ------------------------------------
-  P(A)   Prior probability of A
-  P(B    A\)
-  P(B)   Evidence: probability of B overall
-  P(A    B\)
-
-------------------------------------------------------------------------
-
-# Intuitive Visualization
-
-Bayes is basically **filtering a group**.
-
-1.  Start with a large population.
-2.  Observe evidence **B**.
-3.  Only look at cases where **B occurs**.
-4.  Inside that group, measure how many are **A**.
-
-Simplified formula:
-
-P(A\|B) = P(A ∩ B) / P(B)
+$$
+P(A \mid B)
+$$
 
 Meaning:
 
-> Among all cases where **B happens**, how many also have **A**?
-
-------------------------------------------------------------------------
-
-# Example (Medical Test)
-
-Suppose we test 1000 people.
-
-  
-| Condition | Positive Test | Negative Test | Total |  
-|---------------|---------------|---------------|-------|  
-| Disease | 9 | 1 | 10 |  
-| No disease | 99 | 891 | 990 |  
-| **Total** | **108** | **892** | **1000** |
-
-Question:
-
-What is the probability someone **actually has the disease given a
-positive test**?
-
-P(disease \| positive)
-
-Only look at the **positive tests (108)**.
-
--   9 actually have the disease
-
-$$  
-P(\text{disease}|\text{positive}) = \frac{9}{108}  
-$$
-------------------------------------------------------------------------
-
-# How to Solve This Problems
-
-Step 1: Identify events
-
--   A = cause
--   B = evidence
-
-Step 2: Find
-
--   P(A)
--   P(B\|A)
--   P(B)
-
-Step 3: Apply Bayes
-
-P(A\|B) = (P(B\|A) \* P(A)) / P(B)
-
-------------------------------------------------------------------------
-
-# Common Mistake
-
-People confuse:
-
-P(A\|B) vs P(B\|A)
-
-Example:
-
-  Expression   Meaning
-  ------------ -----------
-  P(positive   disease)
-  P(disease    positive)
-
-These are **not the same**.
-
-------------------------------------------------------------------------
-
-# Memory Trick
-
-**Given B → only look at cases where B occurs.**
-
-Then calculate the fraction that are A.
-
-------------------------------------------------------------------------
-
-##  What is Bayes ?
-
-$$
-\text{Posterior} = \frac{\text{Likelihood} \times \text{Prior}}{\text{Evidence}}
-$$
-
-Bayes updates what we believe about a **cause** after seeing some **evidence**.
+> Probability that **A is true given that B has occurred**.
 
 ---
 
-### Using the Medical Test Example
+# The Formula
+
+$$
+P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
+$$
+
+Or written in plain English:
+
+$$
+\text{Posterior} =
+\frac{\text{Likelihood} \times \text{Prior}}{\text{Evidence}}
+$$
+
+| Term | Name | Meaning |
+|-----|------|--------|
+| $P(A)$ | **Prior** | What we believe about A *before* seeing evidence |
+| $P(B \mid A)$ | **Likelihood** | Probability of observing B if A is true |
+| $P(B)$ | **Evidence** | Overall probability of observing B |
+| $P(A \mid B)$ | **Posterior** | Updated belief about A *after* seeing B |
+
+---
+
+# Intuition: Filtering a Population
+
+Bayes is essentially **filtering a population** down to relevant cases.
+
+1. Start with a large population  
+2. Observe evidence **B**  
+3. Only look at cases where **B occurs**  
+4. Inside that filtered group, measure how many are also **A**
+
+Simplified form:
+
+$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}
+$$
+
+> Among all cases where **B happens**, how many also have **A**?
+
+---
+
+# Example 1 — Medical Test (1000 People)
+
+Suppose we test **1000 people**.
 
 | Condition | Positive Test | Negative Test | Total |
-|---|---|---|---|
+|-----------|---------------|---------------|-------|
 | Disease | 9 | 1 | 10 |
 | No disease | 99 | 891 | 990 |
 | **Total** | **108** | **892** | **1000** |
 
-We want to compute:
+### Question
+
+What is the probability someone **actually has the disease given a positive test**?
+
+Only look at the **108 positive tests**.
+
+Out of those:
+
+- **9 actually have the disease**
 
 $$
-P(\text{Disease}|\text{Positive})
+P(\text{Disease} \mid \text{Positive}) = \frac{9}{108} \approx 0.083
 $$
 
 ---
 
-## Prior
+# Example 2 — Rare Disease with False Positives
 
-**Prior** = what we believe *before seeing the test result*.
+A rare disease affects **2% of the population**.
 
-In the population:
+Test accuracy:
 
-- 10 people out of 1000 have the disease
+- If a person **has the disease**, the test is **positive 95%** of the time.
+- If a person **does not have the disease**, the test is still **positive 8%** of the time.
 
-$$
-P(\text{Disease}) = \frac{10}{1000} = 0.01
-$$
+A person tests **positive**.
 
-Meaning: before testing, there is a **1% chance** someone has the disease.
+### Define Events
 
----
+- $D$ = person **has the disease**
+- $T$ = test **positive**
 
-## Likelihood
-
-**Likelihood** = how likely the evidence is **if the cause is true**.
-
-Among the 10 people who actually have the disease:
-
-- 9 test positive
+We want:
 
 $$
-P(\text{Positive}|\text{Disease}) = \frac{9}{10} = 0.9
+P(D \mid T)
 $$
 
-Meaning: if someone **really has the disease**, the test detects it **90% of the time**.
-
----
-
-## Evidence
-
-**Evidence** = how often the evidence appears overall.
-
-In the entire population:
-
-- 108 people test positive
+### Known Probabilities
 
 $$
-P(\text{Positive}) = \frac{108}{1000} = 0.108
+P(D) = 0.02
 $$
 
-This includes:
-
-- 9 true positives
-- 99 false positives
-
----
-
-## Posterior
-
-**Posterior** = the updated probability **after seeing the evidence**.
-
-Among all **108 positive tests**:
-
-- only 9 actually have the disease
-
 $$
-P(\text{Disease}|\text{Positive}) = \frac{9}{108} \approx 0.083
+P(D^c) = 0.98
 $$
 
-Meaning:
-
-> If someone tests positive, the probability they actually have the disease is about **8.3%**.
-
----
-
-## Intuition
-
-Even though the test is **90% accurate**, the disease is **very rare (1%)**.
-
-So most positive results come from **false positives**, not real cases.
-
-This is why:
+$$
+P(T \mid D) = 0.95
+$$
 
 $$
-P(\text{Disease}|\text{Positive}) \neq P(\text{Positive}|\text{Disease})
+P(T \mid D^c) = 0.08
 $$
+
+### Compute Evidence
+
+$$
+P(T) =
+P(T \mid D)P(D) +
+P(T \mid D^c)P(D^c)
+$$
+
+$$
+P(T) =
+0.95 \times 0.02 +
+0.08 \times 0.98
+$$
+
+$$
+P(T) = 0.019 + 0.0784 = 0.0974
+$$
+
+### Apply Bayes
+
+$$
+P(D \mid T) =
+\frac{P(T \mid D)P(D)}{P(T)}
+$$
+
+$$
+P(D \mid T) =
+\frac{0.95 \times 0.02}{0.0974}
+=
+\frac{0.019}{0.0974}
+\approx 0.195
+$$
+
+**Final Answer:**
+
+The probability the person actually has the disease is about **19.5%**.
