@@ -13,7 +13,43 @@
     {% seo %}
    <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'loose'
+      });
+
+      function renderMermaidBlocks() {
+        // Plain kramdown output puts the language class on <code>; a Rouge-highlighted
+        // build (e.g. GitHub Pages) instead wraps the block in <div class="language-mermaid">.
+        const blocks = document.querySelectorAll(
+          'pre code.language-mermaid, div.language-mermaid code'
+        );
+        const seen = new Set();
+
+        blocks.forEach((node) => {
+          const container = node.closest('div.language-mermaid') || node.closest('pre');
+          if (!container || seen.has(container)) return;
+          seen.add(container);
+
+          const text = node.textContent.trim();
+          if (!text) return;
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'mermaid';
+          wrapper.textContent = text;
+
+          container.replaceWith(wrapper);
+        });
+
+        mermaid.run({ nodes: document.querySelectorAll('.mermaid') });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderMermaidBlocks);
+      } else {
+        renderMermaidBlocks();
+      }
     </script>
 </head>
 
