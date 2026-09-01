@@ -23,14 +23,15 @@ sequenceDiagram
     participant C as Client (active opener)
     participant S as Server (listener)
     C->>S: SYN (seq=x)
-    Note over S: SYN_RECV — sitting in the SYN queue
+    Note over C: SYN_SENT
     S-->>C: SYN-ACK (seq=y, ack=x+1)
-    Note over C: ESTABLISHED
+    Note over S: SYN_RECV — sitting in the SYN queue
     C->>S: ACK (ack=y+1)
+    Note over C: ESTABLISHED
     Note over S: ESTABLISHED
 ```
 
-1. **SYN** — the client picks an initial sequence number and asks to open a connection.
+1. **SYN** — the client picks an initial sequence number and asks to open a connection. At this point the client is in **SYN_SENT**.
 2. **SYN-ACK** — the server acknowledges the client's SYN and sends its own SYN. Between step 1 and step 3, the server-side socket sits in **SYN_RECV**, parked in the kernel's SYN queue waiting for the final ACK.
 3. **ACK** — the client acknowledges the server's SYN. Both sides move to **ESTABLISHED** and can now exchange data.
 
@@ -50,6 +51,7 @@ sequenceDiagram
     participant A as Side A (active closer)
     participant B as Side B (passive closer)
     A->>B: FIN
+    Note over A: FIN_WAIT_1
     B-->>A: ACK
     Note over B: CLOSE_WAIT — waiting for the app to call close()
     Note over A: FIN_WAIT_2
@@ -63,10 +65,10 @@ sequenceDiagram
 
 Closing a TCP connection takes two independent FIN/ACK pairs, one per direction, because either side can still have data in flight when it decides to stop sending:
 
-1. Side A sends **FIN** (I'm done sending).
-2. Side B's kernel immediately replies with **ACK**, and side B's socket moves into **CLOSE_WAIT** — it stays there until side B's *application code* calls `close()` on the socket. Side A, having gotten its ACK, moves to `FIN_WAIT_2`.
-3. Whenever side B's app finally closes the socket, side B sends its own **FIN** and moves to `LAST_ACK`.
-4. Side A acknowledges with the final **ACK** and moves into **TIME_WAIT**, where it waits 2 x MSL (about 60 seconds on Linux) before fully releasing the socket, in case that last ACK got lost and B needs it retransmitted. Side B, upon receiving the ACK, closes immediately.
+1. Side A sends **FIN** (I'm done sending) and moves into `FIN_WAIT_1`.
+2. Side B's kernel immediately replies with **ACK**, and side B's socket moves into **CLOSE_WAIT** — it stays there until side B's *application code* calls `close()` on the socket. Side A, having received that ACK, moves to `FIN_WAIT_2`.
+3. When side B's app finally closes the socket, side B sends its own **FIN** and moves to `LAST_ACK`.
+4. Side A acknowledges with the final **ACK** and moves into **TIME_WAIT**, where it waits 2 x MSL (about 60 seconds on Linux) before fully releasing the socket, in case the last ACK was lost and B needs it retransmitted. Side B, upon receiving the final ACK, closes immediately.
 
 ### Why `close-wait` count matters
 
@@ -93,3 +95,5 @@ ss -tan state syn-recv   | wc -l      # SYN queue filling: flood, or backlog too
 ```
 
 Run all three before you start digging through application logs. `TIME_WAIT` points at your own connection-reuse habits, `CLOSE_WAIT` points at a bug in your own app, and `SYN_RECV` points at something happening to your listener from the network side — either an attack or an undersized queue. Knowing which bucket you're in tells you whether to change code, change config, or call your upstream provider.
+
+References: [string-wise.com](https://string-wise.com/)
