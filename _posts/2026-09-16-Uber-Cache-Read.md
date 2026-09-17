@@ -53,7 +53,7 @@ One of Uber's largest use cases now serves more than 6 million requests per seco
 
 The same workload would have required approximately 60,000 CPU cores from the storage engine. With CacheFront, Uber serves approximately 99.9% cache hits using only 3,000 Redis cores.
 
-![Architecture of Uber's integrated Docstore cache](uber-cachefront-read.png)
+![Architecture of Uber's integrated Docstore cache]({{ '/_images/uber-cachefront-read.png' | relative_url }})
 
 ## Reference
 
