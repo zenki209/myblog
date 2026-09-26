@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="300" fill="#ffffff"/>
+
+  <!-- Lead blocker -->
+  <rect x="30" y="110" width="190" height="80" rx="8" fill="#e6f4ea" stroke="#2e7d32" stroke-width="2"/>
+  <text x="125" y="140" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">SPID 61</text>
+  <text x="125" y="160" text-anchor="middle" font-size="13" fill="#1b5e20">Holds X lock</text>
+  <text x="125" y="177" text-anchor="middle" font-size="13" fill="#1b5e20">on Orders (RID)</text>
+
+  <!-- Blocked #1 -->
+  <rect x="290" y="110" width="190" height="80" rx="8" fill="#fdecea" stroke="#c62828" stroke-width="2"/>
+  <text x="385" y="140" text-anchor="middle" font-size="16" font-weight="bold" fill="#8e0000">SPID 62</text>
+  <text x="385" y="160" text-anchor="middle" font-size="13" fill="#8e0000">Blocked, waiting</text>
+  <text x="385" y="177" text-anchor="middle" font-size="13" fill="#8e0000">for same row</text>
+
+  <!-- Blocked #2 -->
+  <rect x="550" y="110" width="190" height="80" rx="8" fill="#fdecea" stroke="#c62828" stroke-width="2"/>
+  <text x="645" y="140" text-anchor="middle" font-size="16" font-weight="bold" fill="#8e0000">SPID 63</text>
+  <text x="645" y="160" text-anchor="middle" font-size="13" fill="#8e0000">Blocked, waiting</text>
+  <text x="645" y="177" text-anchor="middle" font-size="13" fill="#8e0000">on SPID 62</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555555"/>
+    </marker>
+  </defs>
+  <line x1="290" y1="150" x2="222" y2="150" stroke="#555555" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="550" y1="150" x2="482" y2="150" stroke="#555555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="256" y="135" text-anchor="middle" font-size="12" fill="#555555">blocked by</text>
+  <text x="516" y="135" text-anchor="middle" font-size="12" fill="#555555">blocked by</text>
+
+  <!-- Caption -->
+  <text x="380" y="60" text-anchor="middle" font-size="18" font-weight="bold" fill="#222222">A blocking chain, as sp_who2 would surface it</text>
+  <text x="380" y="240" text-anchor="middle" font-size="13" fill="#444444">sp_who2 shows BlkBy = 61 for SPID 62, and BlkBy = 62 for SPID 63.</text>
+  <text x="380" y="260" text-anchor="middle" font-size="13" fill="#444444">Killing the lead blocker (61) frees the whole chain.</text>
+</svg>
