@@ -108,7 +108,7 @@ Put these on a dashboard and alert on them, especially **steal** and **iowait** 
 
 ---
 
-## TL;DR
+## TIPS
 
 1. **Header first:** load vs cores, then the CPU breakdown (`us`/`sy`/`wa`/`st`), then `avail Mem`.
 2. **Classify the problem:** CPU, disk, memory, kernel, network, or "not this box".
