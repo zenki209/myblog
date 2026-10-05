@@ -23,16 +23,17 @@ MiB Mem :  7820 total,   210 free,  6100 used,  1510 buff/cache
 MiB Swap:     0 total,     0 free,     0 used.   1180 avail Mem
 ```
 
-| Field | What to check | Red flag |
+| Red flag in `top` | What it suggests | Next action |
 |---|---|---|
-| **load average** (1, 5, 15 min) | Compare to the core count (`nproc`). A 1-min value above the 15-min value means it's getting worse *right now* | Load well above cores. Linux load also counts processes stuck on disk I/O, so **high load ≠ high CPU** |
-| **us** | CPU time in application code | High → an app is CPU-bound. Sort by CPU |
-| **sy** | CPU time in the kernel | High → syscall storm, context switching, lots of small I/O |
-| **wa** (iowait) | CPU idle while waiting on disk | Above ~10–20% → storage bottleneck. On EC2, often EBS throughput or IOPS limits |
-| **st** (steal) | CPU time taken by the hypervisor | Sustained steal on AWS burstable instances (t2/t3) usually means CPU credits are exhausted |
-| **si** | Software interrupts | High → network packet processing load |
-| **avail Mem** | The real free-memory number | Low with swap in use → memory pressure. Ignore "free": Linux uses spare memory as page cache on purpose |
-| **zombie** | Dead child processes | A few are harmless. A growing count means a parent process has a bug |
+| Load above the core count (`nproc`), especially if the 1-min value is rising | CPU contention or tasks blocked on I/O; Linux load includes processes in uninterruptible sleep, so **high load ≠ high CPU** | Compare `us`, `wa`, and `%id`; if CPU is idle while load is high, look for processes in `D` state |
+| High `us`, or one process dominates CPU | Application code is CPU-bound, possibly in one hot thread | Sort by CPU (`P`); inspect threads with `top -H -p <pid>`, then profile with `perf top -p <pid>` |
+| High `sy` | Kernel work, syscall volume, or context switching | Check `vmstat 1` (`cs`), `pidstat -w 1`, then `strace -c -p <pid>` on a suspect process |
+| Sustained `wa` above ~10–20%, especially with processes in `D` state | Storage bottleneck; on EC2, check EBS throughput or IOPS limits | Run `iostat -xz 1` (`%util`, `await`) and `iotop` |
+| Sustained high `st` | Hypervisor contention; on burstable EC2, CPU credits may be exhausted | Check CloudWatch `CPUCreditBalance`; consider a non-burstable instance if credits are depleted |
+| High `si` | Software-interrupt load, often network packet processing | Check interface traffic with `sar -n DEV 1` and socket counts with `ss -s` |
+| Low `avail Mem` with swap in use or growing | Memory pressure or a leak; ignore `free`, since Linux uses spare memory as page cache | Sort by memory (`M`), watch process `RES`, and check `free -m` plus `dmesg -T \| grep -i oom` |
+| Growing zombie count | A parent process may not be reaping child processes; a few zombies are harmless | Find a zombie's parent PID with `ps -o ppid= -p <zombie-pid>`, then inspect that parent |
+| Host signals look normal but the app is slow | The bottleneck may be outside this machine (DB, upstream, DNS, or locks) | Check app metrics and logs, inspect connections with `ss -tnp`, and trace dependencies |
 
 > **Example:** In the header above, load is high but the CPU is 38% idle, and `wa` is 30%. That's a **disk** problem, not a CPU problem. You can make that call before looking at a single process.
 
@@ -61,23 +62,7 @@ MiB Swap:     0 total,     0 free,     0 used.   1180 avail Mem
 
 ---
 
-## 3. Pattern → next tool
-
-`top` gives you the direction; a specialist tool gives you the answer.
-
-| What `top` shows | Likely cause | Next command |
-|---|---|---|
-| High `us`, one process on top | Hot code path or runaway loop | `top -H -p <pid>`, then `perf top -p <pid>` or a profiler |
-| High `wa`, processes in `D` state | Disk saturated | `iostat -xz 1` (check `%util`, `await`), `iotop` |
-| High `st` | Noisy host or out of burst credits | CloudWatch `CPUCreditBalance`. Consider a non-burstable instance type |
-| High `sy` | Syscall or context-switch storm | `vmstat 1` (the `cs` column), `pidstat -w 1`, `strace -c -p <pid>` |
-| Low avail memory, swap growing | Memory leak or undersized instance | `free -m`, `dmesg -T \| grep -i oom`, watch which process's `RES` keeps growing |
-| High `si` | Network load | `sar -n DEV 1`, `ss -s` |
-| Everything looks fine but the app is slow | Problem is outside this host (DB, upstream, DNS, locks) | App metrics and logs, `ss -tnp`, trace the dependencies |
-
----
-
-## 4. Capture evidence during an incident
+## 3. Capture evidence during an incident
 
 `top` is live and gone once you close it. Snapshot it for the postmortem:
 
@@ -91,7 +76,7 @@ top -b -d 5 -n 12 > top_$(date +%s).log
 
 ---
 
-## 5. Don't rely on `top` alone
+## 4. Don't rely on `top` alone
 
 `top` only shows the present, on one box. The same signals can be collected and kept over time with any Prometheus-compatible stack (for example Grafana Alloy → VictoriaMetrics/Prometheus → Grafana). These node exporter metrics match the header:
 
